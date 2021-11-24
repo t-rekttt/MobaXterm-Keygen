@@ -18,7 +18,6 @@ on:
       VERSION:
         description: 'Software version'
         required: true
-        default: 'none'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
