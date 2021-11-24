@@ -9,9 +9,16 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      NAME:
+        description: 'Name to register license to'
+        required: true
+        default: 'Thao'
+      VERSION:
+        description: 'Software version'
+        required: true
+        default: 'none'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -21,16 +28,13 @@ jobs:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    env:
-      NAME: Thao
-      VERSION: 21.4
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
           python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
           architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
-      - run: python MobaXterm-Keygen.py ${{ env.NAME }} ${{ env.VERSION }}
+      - run: python MobaXterm-Keygen.py ${{ github.event.inputs.NAME }} ${{ github.event.inputs.VERSION }}
       - uses: actions/upload-artifact@v2.2.4
         with:
           path: Custom.mxtpro
