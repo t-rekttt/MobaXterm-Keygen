@@ -36,4 +36,5 @@ jobs:
       - run: python MobaXterm-Keygen.py ${{ github.event.inputs.NAME }} ${{ github.event.inputs.VERSION }}
       - uses: actions/upload-artifact@v2.2.4
         with:
+          name: Custom.mxtpro
           path: Custom.mxtpro
